@@ -1,0 +1,34 @@
+{
+  "name": "event-reader-service",
+  "version": "1.0.0",
+  "description": "Serverless eventGenerator api",
+  "main": "index.js",
+  "dependencies": {
+    "event-reader": "file:../api-operations/eventReader",
+    "object-mapper": "^5.0.0"
+  },
+  "directories": {
+    "lib": "./configs"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.462.0",
+    "chai": "^4.2.0",
+    "jest": "^24.8.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.0",
+    "serverless-aws-alias": "^1.7.1",
+    "serverless-dynamodb-local": "^0.2.35",
+    "serverless-offline": "^4.10.6",
+    "serverless-prune-plugin": "^1.3.2"
+  },
+  "scripts": {
+    "unit-test": "mocha ../api-operations/*/__test__/*.js",
+    "code-coverage": "nyc --reporter=html --reporter=text mocha ../api-operations/*/__test__/*.js",
+    "component-test-pointer": "cd ../api-test && npm run component-test-execute",
+    "component-test": "sls offline --exec \"npm run component-test-pointer\" ",
+    "test": "npm run unit-test & npm run code-coverage & npm run component-test"
+  },
+  "contributors": [],
+  "author": "Nitesh Jha",
+  "license": "[license]"
+}

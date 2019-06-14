@@ -1,0 +1,15 @@
+create:
+  name: eventReader-${opt:stage, self:provider.stage}
+  handler: src/handlers/${self:provider.name}/get-eventReader-handler.handle
+  timeout: 900
+  environment:
+    SQS_ENDPOINT: https://sqs.eu-west-1.amazonaws.com/820643439592/event-generator-queue.fifo
+  package:
+    include:
+      - src/handlers/${self:provider.name}/get-eventReader-handler.js
+      - node_modules/get-eventReader-handler/**
+  events:
+    - http:
+        path: read
+        method: get
+        cors: true
